@@ -1,4 +1,14 @@
+import { useState } from "react";
+import PopupModal from "../PopupModal";
+
 const ImageHeader = () => {
+
+    const [open,setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
     return(
         <section className="h-[86svh]">
             <div className="w-full h-[6%] my-8 flex justify-center items-center">
@@ -17,7 +27,7 @@ const ImageHeader = () => {
                         <div className="w-10/12 h-4/5">
                             <p className="text-[5rem] leading-[6rem] font-[550] font-['Roboto']">Let's Learn & Earn</p>
                             <p className="text-[2.5rem] my-4 leading-[3.5rem] font-['Roboto']">Get a chance to win up-to <span className="text-[2.6rem] text-[#1A73E8] font-bold">Rs. 15,000</span></p>
-                            <button className="bg-[#1A73E8] w-6/12 text-white h-[11%] my-7 rounded-lg">Refer Now</button>
+                            <button className="bg-[#1A73E8] w-6/12 text-white h-[11%] my-7 rounded-lg" onClick={handleOpen}>Refer Now</button>
                         </div>
                     </div>
                     <div className="w-3/5 overflow-hidden relative">
@@ -25,6 +35,7 @@ const ImageHeader = () => {
                     </div>
                 </div>
             </div>
+            <PopupModal open={open} setOpen={setOpen}/>
         </section>
     )
 }
