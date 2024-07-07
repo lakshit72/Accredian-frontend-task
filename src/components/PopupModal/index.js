@@ -13,6 +13,23 @@ const PopupModal = ({open,setOpen}) =>{
     }
 
     const handleSubmit =  async () =>{
+
+        var emailCh = Email.current.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        
+        var refEmailCh = RefEmail.current.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+
+        if(!emailCh || !refEmailCh){
+            window.alert("enter a valid email");
+            return 0;
+        }
+
+        var phnum = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(PhNum.current.value);
+        if(!phnum){
+            window.alert("enter a valid number")
+            return 0;
+        }
+
+
         await fetch("https://accredian-backend-task-zuh6.onrender.com/refer",{
             method:"POST",
             headers:{
